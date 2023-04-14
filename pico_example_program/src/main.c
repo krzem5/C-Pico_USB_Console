@@ -7,7 +7,12 @@
 
 
 static void _input_callback(unsigned char length,const char* data){
-	pico_usb_console_protocol_send_log(0,"[%u]: %s",length,data);
+	if (!length){
+		PICO_USB_CONSOLE_PROTOCOL_ERROR("Empty input");
+	}
+	else{
+		pico_usb_console_protocol_send_log(0,"[%u]: %s",length,data);
+	}
 }
 
 

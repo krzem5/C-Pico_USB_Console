@@ -22,7 +22,7 @@
 			} \
 			__fp2++; \
 		} \
-		uiscp_protocol_send_log(PICO_USB_CONSOLE_PROTOCOL_LOG_FLAG_ERROR,"[%s:%u(%s)] "str,__FILE__+__i+1,__LINE__,__func__,##__VA_ARGS__); \
+		pico_usb_console_protocol_send_log(PICO_USB_CONSOLE_PROTOCOL_LOG_FLAG_ERROR,"[%s:%u(%s)] "str,__FILE__+__i+1,__LINE__,__func__,##__VA_ARGS__); \
 	} while (0)
 
 
