@@ -25,7 +25,7 @@ if ("--release" in sys.argv):
 				fl.append(f"build/{(r+f).replace('/','$')}.o")
 				if (subprocess.run(["gcc","-Wall","-lm","-Werror","-I","src/include","-O3","-c",r+f,"-o",f"build/{(r+f).replace('/','$')}.o"]).returncode!=0):
 					sys.exit(1)
-	if (subprocess.run(["gcc","-o","build/pico_usb_console"]+fl).returncode!=0):
+	if (subprocess.run(["gcc","-o","build/pico_usb_console"]+fl+["-ludev"]).returncode!=0):
 		sys.exit(1)
 else:
 	fl=[]
@@ -36,7 +36,7 @@ else:
 				fl.append(f"build/{(r+f).replace('/','$')}.o")
 				if (subprocess.run(["gcc","-Wall","-lm","-Werror","-I","src/include","-O0","-c",r+f,"-o",f"build/{(r+f).replace('/','$')}.o"]).returncode!=0):
 					sys.exit(1)
-	if (subprocess.run(["gcc","-o","build/pico_usb_console"]+fl).returncode!=0):
+	if (subprocess.run(["gcc","-o","build/pico_usb_console"]+fl+["-ludev"]).returncode!=0):
 		sys.exit(1)
 if ("--run" in sys.argv):
 	subprocess.run(["build/pico_usb_console"])
