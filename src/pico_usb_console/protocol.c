@@ -11,7 +11,7 @@ static unsigned int _protocol_buffer_end=0;
 static unsigned int _protocol_buffer_length=0;
 
 static const unsigned int _protocol_packet_type_to_length[256]={
-	[PROTOCOL_PACKET_TYPE_LOG]=-1
+	[PROTOCOL_PACKET_TYPE_LOG]=-1,
 };
 
 
@@ -51,6 +51,9 @@ _not_enough_data:
 				return;
 			}
 			required_length=_protocol_buffer[(_protocol_buffer_start+2)&(PROTOCOL_INTERNAL_BUFFER_SIZE-1)];
+		}
+		if (!required_length){
+			required_length=2;
 		}
 		if (_protocol_buffer_length<required_length){
 			goto _not_enough_data;
