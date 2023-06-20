@@ -60,14 +60,14 @@ _not_enough_data:
 		}
 		switch (type){
 			case PROTOCOL_PACKET_TYPE_LOG:
-				{
+				if (required_length>3){
 					char buffer[256];
 					for (unsigned int i=4;i<required_length;i++){
 						buffer[i-4]=_protocol_buffer[(_protocol_buffer_start+i)&(PROTOCOL_INTERNAL_BUFFER_SIZE-1)];
 					}
 					ui_add_output(buffer,required_length-4,!!_protocol_buffer[(_protocol_buffer_start+3)&(PROTOCOL_INTERNAL_BUFFER_SIZE-1)]);
-					break;
 				}
+				break;
 		}
 		_protocol_buffer_length-=required_length;
 		_protocol_buffer_start=(_protocol_buffer_start+required_length)&(PROTOCOL_INTERNAL_BUFFER_SIZE-1);

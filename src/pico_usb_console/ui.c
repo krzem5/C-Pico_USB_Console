@@ -168,6 +168,9 @@ static void _ui_add_line(unsigned int flags,const char* data,unsigned int length
 			line_length+=char_length;
 			space--;
 		}
+		if (line_length>length){
+			line_length=length;
+		}
 		line->data=malloc(line_length+tab_extra_space+space+1);
 		unsigned int j=0;
 		for (unsigned int i=0;i<line_length;i++){
