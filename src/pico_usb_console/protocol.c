@@ -47,6 +47,9 @@ _not_enough_data:
 		}
 		unsigned int required_length=_protocol_packet_type_to_length[type];
 		if (required_length==-1){
+			if (_protocol_buffer_length<2){
+				return;
+			}
 			required_length=_protocol_buffer[(_protocol_buffer_start+2)&(PROTOCOL_INTERNAL_BUFFER_SIZE-1)];
 		}
 		if (_protocol_buffer_length<required_length){
